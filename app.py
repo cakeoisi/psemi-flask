@@ -35,18 +35,5 @@ def create():
     db.session.commit()
     return redirect("/")
 
-# タスク編集
-@app.route('/edit/<int:id>', methods=['GET', 'POST'])
-def edit(id):
-    task = Todo.query.get(id)
-    if request.method == 'POST':
-        # 編集内容を反映
-        task.title = request.form.get('title')
-        task.details = request.form.get('details')
-        db.session.commit()
-        return redirect('/')
-    # GETリクエスト時は編集画面を表示
-    return render_template('edit.html', task=task)
-
 if __name__ == "__main__":
     app.run(debug=True)
