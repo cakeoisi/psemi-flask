@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container">
+    <h1 class="my-4">タスクの編集</h1>
+    <form action="/edit/{{ task.id }}" method="POST" class="mb-4">
+        <div class="mb-3">
+            <label for="title" class="form-label">タイトル</label>
+            <input type="text" name="title" class="form-control" value="{{ task.title }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="details" class="form-label">詳細</label>
+            <input type="text" name="details" class="form-control" value="{{ task.details }}" required>
+        </div>
+        <button type="submit" class="btn btn-success">更新</button>
+    </form>
+</div>
+{% endblock %}

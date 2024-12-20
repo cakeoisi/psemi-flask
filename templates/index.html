@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container">
+    <h1 class="my-4 text-center">タスク一覧</h1>
+
+    <!-- タスク作成フォーム -->
+    <div class="container d-flex justify-content-center">
+        <form action="/create" method="POST" class="text-center mb-4">
+            <div class="mb-3">
+                <label for="title" class="form-label">タイトル</label>
+                <input type="text" name="title" class="form-control" placeholder="タイトルを入力" required>
+            </div>
+            <div class="mb-3">
+                <label for="details" class="form-label">詳細</label>
+                <input type="text" name="details" class="form-control" placeholder="詳細を入力" required>
+            </div>
+            <button type="submit" class="btn btn-primary">作成</button>
+        </form>
+    </div>
+
+    <!-- タスク一覧表示 -->
+    <ul class="list-group">
+        {% for task in tasks %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+                <h5>{{ task.title }}</h5>
+                <p class="mb-0">{{ task.details }}</p>
+            </div>
+            <div>
+                <a href="/edit/{{ task.id }}" class="btn btn-sm btn-warning me-2">編集</a>
+                <a href="/delete/{{ task.id }}" class="btn btn-sm btn-danger">削除</a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
